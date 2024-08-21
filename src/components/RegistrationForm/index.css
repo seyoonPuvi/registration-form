@@ -82,3 +82,10 @@ input {
 .text {
   text-align: center;
 }
+
+
+.errorInput {
+  border: 1px solid red;
+  background-color: pink;
+  opacity: 0.5;
+}

@@ -8,14 +8,14 @@ class RegistrationForm extends Component {
     lastname: '',
     isSubmitted: false,
     isFirstnameEmpty: false,
-    islastnameEmpty: false,
+    isLastnameEmpty: false,
   }
 
   onChangeFirstname = event =>
     this.setState({firstname: event.target.value, isFirstnameEmpty: false})
 
   onChangeLastname = event =>
-    this.setState({lastname: event.target.value, islastnameEmpty: false})
+    this.setState({lastname: event.target.value, isLastnameEmpty: false})
 
   onCheckFirstname = () => {
     const {firstname} = this.state
@@ -29,9 +29,9 @@ class RegistrationForm extends Component {
   onCheckLastname = () => {
     const {lastname} = this.state
     if (lastname === '') {
-      this.setState({islastnameEmpty: true})
+      this.setState({isLastnameEmpty: true})
     } else {
-      this.setState({islastnameEmpty: false})
+      this.setState({isLastnameEmpty: false})
     }
   }
 
@@ -53,18 +53,18 @@ class RegistrationForm extends Component {
       firstname: '',
       lastname: '',
       isFirstnameEmpty: false,
-      islastnameEmpty: '',
+      isLastnameEmpty: '',
     })
   }
 
   renderForm = () => {
-    const {firstname, lastname, isFirstnameEmpty, islastnameEmpty} = this.state
+    const {firstname, lastname, isFirstnameEmpty, isLastnameEmpty} = this.state
 
     const firstnameErrorMsg = isFirstnameEmpty ? (
       <p className="error-msg">Required </p>
     ) : null
 
-    const lastnameErrorMsg = islastnameEmpty ? (
+    const lastnameErrorMsg = isLastnameEmpty ? (
       <p className="error-msg">Required </p>
     ) : null
 
@@ -81,6 +81,7 @@ class RegistrationForm extends Component {
             id="firstname"
             onBlur={this.onCheckFirstname}
             onChange={this.onChangeFirstname}
+            className={isFirstnameEmpty ? 'errorInput' : null}
           />
           {firstnameErrorMsg}
         </div>
@@ -96,10 +97,10 @@ class RegistrationForm extends Component {
             id="lastname"
             onBlur={this.onCheckLastname}
             onChange={this.onChangeLastname}
+            className={isLastnameEmpty ? 'errorInput' : null}
           />
           {lastnameErrorMsg}
         </div>
-
         <div className="btn-cont">
           <button type="submit" className="btn">
             Submit
